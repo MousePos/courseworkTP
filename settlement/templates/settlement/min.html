@@ -1,0 +1,7 @@
+{% extends 'settlement/layout.html' %}
+
+{% block calc %}
+<h1 class="text-center">Минимальные значения</h1>
+<p class="text-center text-info">Минимальный бюджет: {{ min_budget.budget__min }}</p>
+<p class="text-center text-info">Минимальное население: {{ min_population.population__min }}</p>
+{% endblock %}

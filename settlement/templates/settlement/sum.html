@@ -1,0 +1,7 @@
+{% extends 'settlement/layout.html' %}
+
+{% block calc %}
+<h1 class="text-center">Суммарные значения</h1>
+<p class="text-center text-info">Суммарный бюджет: {{ sum_budget.budget__sum }}</p>
+<p class="text-center text-info">Суммарное население: {{ sum_population.population__sum }}</p>
+{% endblock %}

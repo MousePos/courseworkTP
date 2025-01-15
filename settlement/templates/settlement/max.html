@@ -1,0 +1,8 @@
+{% extends 'settlement/layout.html' %}
+
+{% block calc %}
+<h1 class="text-center">Максимальные значения</h1>
+<p class="text-center text-info">Максимальный бюджет: {{ max_budget.budget__max }}</p>
+<p class="text-center text-info">Максимальное население: {{ max_population.population__max }}</p>
+{% endblock %}
+ 

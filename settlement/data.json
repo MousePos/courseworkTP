@@ -1,0 +1,5 @@
+[
+{"name": "City1", "type": "City", "budget": 1000, "population": 500, "head": "Ivan1"},
+{"name": "City2", "type": "Village", "budget": 2000, "population": 800, "head": "Ivan2"},
+{"name": "City3", "type": "Town", "budget": 1500, "population": 300, "head": "Ivan3"}
+]

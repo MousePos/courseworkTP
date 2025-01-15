@@ -1,0 +1,7 @@
+{% extends 'settlement/layout.html' %}
+
+{% block calc %}
+<h1 class="text-center">Средние значения</h1>
+<p class="text-center text-info">Средний бюджет: {{ avg_budget.budget__avg }}</p>
+<p class="text-center text-info">Среднее население: {{ avg_population.population__avg }}</p>
+{% endblock %}

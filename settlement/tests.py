@@ -2,7 +2,7 @@ from django.test import TestCase
 from unittest.mock import patch
 from .models import Settlement
 from django.db.models import Avg, Min, Max, Sum
-from .views import AverageAggregation, MaxAggregation, MinAggregation, SumAggregation
+from .views import AverageAggregation, MaxAggregation, MinAggregation, SumAggregation, CalcAvg, CalcAvgC
 import json
 
 
@@ -106,3 +106,26 @@ class AggregationViewTests(TestCase):
 
         self.assertEqual(result["sum_budget"]["budget__sum"], 4500)  # (1000 + 2000 + 1500) / 3
         self.assertEqual(result["sum_population"]["population__sum"], 1600)  # (500 + 800 + 300) / 3
+
+class CalculationTests(TestCase):
+
+    def setUp(self):
+        # Создаем тестовые данные
+        Settlement.objects.create(budget=100, population=500)
+        Settlement.objects.create(budget=200, population=1000)
+        Settlement.objects.create(budget=300, population=1500)
+        Settlement.objects.create(budget=400, population=2000)
+
+    def test_calc_avg(self):
+        data = list(Settlement.objects.all().values('budget', 'population'))
+        context = CalcAvg()
+        avg_result = context.calculate(data)
+        self.assertEqual(avg_result[0], 250.0)  # average of budget
+        self.assertEqual(avg_result[1], 1250.0)  # average of population
+
+    def test_calc_avg_c(self):
+        data = list(Settlement.objects.all().values('budget', 'population'))
+        context = CalcAvgC()
+        avg_clear_result = context.calculate(data)
+        self.assertEqual(avg_clear_result[0], 250.0)  # average of budget after trimming
+        self.assertEqual(avg_clear_result[1], 1250.0)  # average of population after trimming
